@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
 import { LoginPage } from "tests/src/pages/pmtool/login_page.ts";
-import { Dash } from "tests/src/pages/pmtool/login_page.ts";
+import { DashboardPage } from "../../src/pages/pmtool/dashboeard_page.ts";
 
 test("PageObjects Exercise - Login and Logout", async ({ page }) => {
   const loginPage = new LoginPage(page);
