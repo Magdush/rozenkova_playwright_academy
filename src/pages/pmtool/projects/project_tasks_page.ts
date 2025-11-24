@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { LoginPage } from "./login_page.ts";
+import { LoginPage } from "../login_page.ts";
 
-export class DashboardPage {
+export class ProjectTasksPage {
   readonly page: Page;
   readonly profileButton: Locator;
   readonly logoutButton: Locator;
