@@ -1,5 +1,3 @@
-// tests/learning/asserts/
-// asserts.spec.ts
 import { expect, test } from "@playwright/test";
 import { LoginPage } from "../../../src/pages/pmtool/login_page.ts";
 import { DashboardPage } from "../../../src/pages/pmtool/dashboard_page.ts";
@@ -40,44 +38,41 @@ test.describe("Asserts - Testing in Playwright", () => {
     const pageLogo = page.locator(".logo");
     await expect(pageLogo, "Page Logo is Visible").toBeVisible();
   });
-});
 
- test("Using Soft Asserts", async ({ page }) => {
-  const dashboardPage = new DashboardPage (page);
-  const welcomePageHeader = page.locator("#welcome-page-header");
-  // ? Soft expect: pokud je expect neúspěšný, test bude pokračovat a až na konci se označí jako failed
+  test("Using Soft Asserts", async ({ page }) => {
+    const dashboardPage = new DashboardPage(page);
+    const welcomePageHeader = page.locator("#welcome-page-header");
+
+    // ? Soft expect: pokud je expect neúspěšný, test bude pokračovat a až na konci se označí jako failed
     await expect
       .soft(welcomePageHeader, "Failing Text Assert")
       .toHaveText("Vítejte");
     await dashboardPage.clickProjects();
+  });
 });
-
 
 test("toHaveValue - assert element value (e.g. inputs)", async ({ page }) => {
   const email = "petr5525@example.com";
   const password = "123456";
   const firstName = "Petr";
 
-await page.goto("https://tredgate.com/eshop/index.php?route=account/login");
+  await page.goto("https://tredgate.com/eshop/index.php?route=account/login");
   await page.locator("#input-email").fill(email);
   await page.locator("#input-password").fill(password);
   await page.locator('[type="submit"]').click();
   await page.locator('//a[text()="Edit Account"]').click();
   const firstNameInput = page.locator("#input-firstname");
   await expect(firstNameInput, "First Name have Value").toHaveValue(firstName);
+});
 
-  // https://tredgate.com/eshop/index.php?route=account/login
-  // #input-email petr5525@example.com
-  // #input-password 123456
-  // [type="submit"]
-  //a[text()="Edit Account"]
- // #input-firstname
 test("Negative Asserts - element not visible", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.open();
   const loginButton = page.locator('[type="submit"]');
   const alertMessage = page.locator(".alert");
-  await expect(loginButton, "Wait Until Login Button is Visible").toBeVisible();
+  await expect(loginButton, "Wait until login button is visible").toBeVisible();
+  // ? Deaktivujeme kontrolu pro radek s kontrolou - ESlint jinak upozorni, ze existuje metoda toBeHidden();
+  // eslint-disable-next-line playwright/no-useless-not
   await expect(alertMessage, "Alert message is not visible").not.toBeVisible();
 });
 
