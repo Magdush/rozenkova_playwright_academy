@@ -85,4 +85,3 @@ test("Asserts in Page Objects", async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.open().then((login) => login.pageHeaderAsserts("Login"));
 });
-}
