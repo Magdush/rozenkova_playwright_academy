@@ -1,7 +1,7 @@
 // src/pages/pmtool/
 // login_page.ts
 
-import { expect, Locator, Page, test } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { DashboardPage } from "./dashboard_page.ts";
 import { LostPasswordPage } from "./lost_password_page.ts";
 
@@ -50,11 +50,9 @@ export class LoginPage {
 
   // ? Explicitní typovou anotaci používáme zejména při komplexních metodách, abychom i do budoucnosti (když se bude měnit obsah této metody) měli jasno, kam tato metoda bude pokračovat.
   async login(username: string, password: string): Promise<DashboardPage> {
-    await test.step("Login to Pmtool", async () => {
-      await this.fillUsername(username);
-      await this.fillPassword(password);
-      await this.clickLogin();
-    });
+    await this.fillUsername(username);
+    await this.fillPassword(password);
+    await this.clickLogin();
     return new DashboardPage(this.page);
   }
 
