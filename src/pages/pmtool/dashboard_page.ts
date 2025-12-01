@@ -41,6 +41,14 @@ export class DashboardPage {
       "Application Name Header has Text"
     ).toHaveText(appName);
     await expect(this.profileButton, "Profile Button is Visible").toBeVisible();
+  }
+  async dashboardAsserts(appName: string) {
+    await expect
+      .soft(this.appNameHeader, "Application Name Header has Text")
+      .toHaveText(appName);
+    await expect
+      .soft(this.profileButton, "Profile Button is Visible")
+      .toBeVisible();
     return this;
   }
 }
