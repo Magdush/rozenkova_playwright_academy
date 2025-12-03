@@ -7,5 +7,4 @@ test("Cvičení: Použití assertů v Page Objectech", async ({ page }) => {
     .open()
     .then((login) => login.login("pw_academy", "Playwright321!"))
     .then((dashboard) => dashboard.DashboardAsserts("TEG Project Management"));
-    .then((dashboard) => dashboard.dashboardAsserts("TEG Project Management"));
 });
