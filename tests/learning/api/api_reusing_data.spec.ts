@@ -8,7 +8,7 @@ test("Reusing Data Between API Calls", async ({ request }) => {
   const password = "123456";
   const username =
     faker.internet.username() + "_" + faker.number.int({ max: 1_000_000 });
-  let userId: number;
+  let userId = 0;
 
   // * Registrační request - založení uživatele
   const registrationResponse = await request.post(
