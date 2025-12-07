@@ -18,7 +18,7 @@ test.describe("Atomic Tests: Create Project Modal", () => {
       .then((projects) => projects.clickAddProject());
   });
 
-  test("Modal have Structure Elements", async ({ page }) => {
+  test("Modal have Structure Elements", async () => {
     await test.step("Modal Header", async () => {
       await expect.soft(createProjectModal.titleHeader).toBeVisible();
       await expect
@@ -99,7 +99,7 @@ test.describe("Atomic Tests: Create Project Modal", () => {
     });
   });
 
-  test("Name Input has Validation message", async ({ page }) => {
+  test("Name Input has Validation message", async () => {
     await createProjectModal.triggerNameValidation();
     await expect(createProjectModal.nameValidationLabel).toBeVisible();
     await expect(createProjectModal.nameValidationLabel).toHaveText(
@@ -107,7 +107,7 @@ test.describe("Atomic Tests: Create Project Modal", () => {
     );
   });
 
-  test("Alert Message Test", async ({ page }) => {
+  test("Alert Message Test", async () => {
     await createProjectModal.triggerAlarmMessage();
     await expect(createProjectModal.alertMessageDiv).toBeVisible();
     await expect(createProjectModal.alertMessageDiv).toHaveText(
@@ -115,7 +115,7 @@ test.describe("Atomic Tests: Create Project Modal", () => {
     );
   });
 
-  test("Upload File Test", async ({ page }) => {
+  test("Upload File Test", async () => {
     const fileName = "upload_file.txt";
     const filePath = path.resolve(__dirname, "../../../assets/" + fileName);
     //  require("../../../assets") // ? Pomocná kouzelná funkce, která nám pomůže s cestou (našeptává)
@@ -123,12 +123,12 @@ test.describe("Atomic Tests: Create Project Modal", () => {
     await expect(createProjectModal.deleteAttachmentButton).toBeVisible(); // * Je možné test rozšířit o název přílohy, který se vkládá do Pmtool (je potřeba doplnit lokátor do PO)
   });
 
-  test("Click Back Button Test", async ({ page }) => {
+  test("Click Back Button Test", async () => {
     const projectsPage = await createProjectModal.clickClose();
     await expect(projectsPage.addProjectButton).toBeVisible();
   });
 
-  test("Description iframe Test", async ({ page }) => {
+  test("Description iframe Test", async () => {
     await createProjectModal.fillDescription("Test iframe");
     // TODO: add expect to filled description into the Page Object
   });
