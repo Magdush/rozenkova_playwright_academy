@@ -2,7 +2,7 @@
 // api_objects.spec.ts
 import { expect, test } from "@playwright/test";
 import { faker } from "@faker-js/faker";
-import { UserApi } from "../../src/api/tegb/user_api.test";
+import { UserApi } from "../../../src/api/tegb/user_api.ts";
 
 test("Register and Login via API Objects", async ({ request }) => {
   const userApi = new UserApi(request);
